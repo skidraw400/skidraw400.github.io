@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./bootstrap-5.3.0-alpha3-dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="./bootstrap-5.3.0-alpha3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./scripts/custom.js"></script>
+    <script src="./scripts/marked.min.js"></script>
+    <title>piCore - skidraw400</title>
+    <style>
+        body {
+            animation: fadeInAnimation ease 3s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+
+            padding-top: 4.5rem;
+            padding-bottom: 4.5rem;
+        }
+
+        .sk_blur-bg {
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .sk_nav-bg {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .markdown {
+            height: 24rem;
+            overflow: auto;
+        }
+
+        .markdown img {
+            max-width: 100%;
+        }
+    </style>
+</head>
+
+<body data-bs-theme="dark">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top sk_blur-bg sk_nav-bg" id="navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="./index.html">skidraw400</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="nav nav-pills justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="picore.html">Picore</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <strong>Hey, you!</strong> Check my <a href="https://twitter.com/skidraw400" target="_blank">Twitter</a> and
+            <a href="https://github.com/skidraw400" target="_blank">GitHub</a> and follow me!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <div class="bg-body-tertiary mt-3 rounded">
+            <div class="container px-lg-5 py-2 py-lg-5" id="all-projects">
+                <div id="markdown-target">
+                </div>
+                <a class="btn btn-secondary p-2" href="https://gist.github.com/skidraw400/aa0423b1cc467eb6254ac3d6a769672a" target="_blank">Feel free to ask or leave comment there</a>
+            </div>
+        </div>
+    </main>
+</body>
+<script>
+    fetch("https://gist.githubusercontent.com/skidraw400/aa0423b1cc467eb6254ac3d6a769672a/raw/d65caa1c3337bae013bdd7480f2197ffac96cac6/picore.md")
+        .then(res => res.clone().text())
+        .then(text => {
+            parent = document.getElementById("markdown-target");
+            parent.innerHTML = marked.parse(text);
+        })
+</script>
+
+</html>
